@@ -18,6 +18,13 @@ body {
     line-height: 1.6;
 }
 
+body.futuristic {
+    --primary: #00ffff;
+    --dark: #000;
+    background: radial-gradient(circle at top, #111, #000);
+    color: var(--light);
+}
+
 .container {
     width: 90%;
     max-width: 1200px;
@@ -31,6 +38,10 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
+}
+
+body.futuristic .site-header {
+    background: rgba(0,0,0,0.8);
 }
 
 .site-header .container {
@@ -68,6 +79,20 @@ body {
     font-size: 1.5rem;
 }
 
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--light);
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.theme-toggle:active {
+    transform: rotate(90deg);
+}
+
 .hero {
     height: 100vh;
     background: url('https://via.placeholder.com/1600x900') center/cover no-repeat;
@@ -86,9 +111,23 @@ body {
     background: rgba(0,0,0,0.5);
 }
 
+body.futuristic .hero::after {
+    background: rgba(0, 255, 255, 0.2);
+}
+
 .hero-content {
     position: relative;
     z-index: 1;
+}
+
+body.futuristic .hero-content {
+    text-shadow: 0 0 10px var(--primary);
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
 }
 
 .hero .btn {
@@ -107,6 +146,10 @@ body {
 
 .btn:hover {
     background: #e6005c;
+}
+
+body.futuristic .btn:hover {
+    background: #00cccc;
 }
 
 .section {
@@ -176,11 +219,25 @@ body {
     padding: 40px;
     text-align: center;
     border-radius: 4px;
-    transition: transform 0.3s;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+body.futuristic .portfolio-item {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--light);
 }
 
 .portfolio-item:hover {
-    transform: scale(1.05);
+    transform: perspective(600px) rotateY(10deg) scale(1.05);
+}
+
+.portfolio-item:active {
+    transform: scale(0.95);
+}
+
+.portfolio-item.active {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 0 0 20px var(--primary);
 }
 
 .site-footer {
@@ -188,6 +245,10 @@ body {
     color: var(--light);
     text-align: center;
     padding: 20px 0;
+}
+
+body.futuristic .site-footer {
+    background: rgba(0,0,0,0.8);
 }
 
 .social-links a {
