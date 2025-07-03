@@ -21,6 +21,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Portfolio filter
 const filterButtons = document.querySelectorAll('[data-filter]');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
+const themeToggle = document.getElementById('themeToggle');
 
 filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -34,6 +35,19 @@ filterButtons.forEach(btn => {
                 item.style.display = 'none';
             }
         });
+    });
+});
+
+// Toggle futuristic theme
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('futuristic');
+});
+
+// Interactive portfolio items
+portfolioItems.forEach(item => {
+    item.addEventListener('click', () => {
+        item.classList.toggle('active');
+        setTimeout(() => item.classList.remove('active'), 4000);
     });
 });
 
