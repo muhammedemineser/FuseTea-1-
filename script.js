@@ -61,3 +61,49 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+
+// Carousel functionality
+const track = document.querySelector('.carousel-track');
+if (track) {
+    const slides = Array.from(track.children);
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    let currentSlide = 0;
+
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateCarousel();
+    });
+
+    slides.forEach(card => {
+        card.addEventListener('mouseenter', () => card.classList.add('hover'));
+        card.addEventListener('mouseleave', () => card.classList.remove('hover'));
+    });
+}
+
+// Dropdown
+const dropToggle = document.querySelector('.drop-toggle');
+const dropContent = document.querySelector('.drop-content');
+if (dropToggle && dropContent) {
+    dropToggle.addEventListener('click', () => {
+        dropContent.classList.toggle('show');
+    });
+}
+
+// Slide bar / sidebar
+const slideToggle = document.querySelector('.slide-toggle');
+const sidePanel = document.querySelector('.side-panel');
+if (slideToggle && sidePanel) {
+    slideToggle.addEventListener('click', () => {
+        sidePanel.classList.toggle('show');
+    });
+}

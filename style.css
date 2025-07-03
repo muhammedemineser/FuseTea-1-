@@ -258,6 +258,137 @@ body.futuristic .site-footer {
     font-size: 1.2rem;
 }
 
+/* Showcase elements */
+.showcase {
+    text-align: center;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+.carousel-card {
+    min-width: 100%;
+    position: relative;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    transition: transform 0.4s, filter 0.4s;
+}
+
+.carousel-card.hover {
+    transform: scale(1.05);
+    filter: brightness(1.1) drop-shadow(0 0 15px var(--primary));
+}
+
+.carousel-card img {
+    width: 100%;
+    display: block;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.8);
+    border: none;
+    font-size: 2rem;
+    padding: 0 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    color: var(--dark);
+}
+
+.carousel-btn:hover {
+    background: var(--primary);
+    color: var(--light);
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+.drop-down {
+    margin: 2rem 0;
+}
+
+.drop-toggle {
+    background: var(--primary);
+    color: var(--light);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: filter 0.3s;
+}
+
+.drop-toggle:hover {
+    filter: brightness(1.1);
+}
+
+.drop-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.drop-content.show {
+    max-height: 200px;
+    opacity: 1;
+}
+
+.slide-bar {
+    position: relative;
+    overflow: visible;
+}
+
+.slide-toggle {
+    background: var(--primary);
+    color: var(--light);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.slide-toggle:hover {
+    opacity: 0.8;
+}
+
+.side-panel {
+    position: absolute;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    max-width: 80%;
+    background: var(--dark);
+    color: var(--light);
+    padding: 1rem;
+    opacity: 0;
+    transition: right 0.5s ease, opacity 0.5s ease, box-shadow 0.5s;
+}
+
+.side-panel.show {
+    right: 0;
+    opacity: 1;
+    box-shadow: -4px 0 10px rgba(0,0,0,0.3);
+}
+
 @media (max-width: 768px) {
     .site-nav {
         display: none;
