@@ -112,8 +112,10 @@ if (dropToggle && dropContent) {
 }
 
 // Slide bar / sidebar
+const slideToggle = document.querySelector('.slide-toggle');
 const sidePanel = document.querySelector('.side-panel');
-if (sidePanel) {
-    // ensure sidebar is visible on load
-    sidePanel.classList.add('show');
+if (slideToggle && sidePanel) {
+    slideToggle.addEventListener('click', () => {
+        sidePanel.classList.toggle('show');
+    });
 }
