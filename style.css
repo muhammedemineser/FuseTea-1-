@@ -185,8 +185,6 @@ body.futuristic .btn:hover {
 .skills .progress div {
     background: var(--primary);
     height: 100%;
-    width: 0;
-    transition: width 0.8s ease;
 }
 
 .filter {

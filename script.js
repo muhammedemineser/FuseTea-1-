@@ -74,24 +74,6 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
 
-// Animate skill bars when they enter the viewport
-const skillsSection = document.querySelector('#about .skills');
-if (skillsSection) {
-    const skillBars = skillsSection.querySelectorAll('.progress div');
-    const skillObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                skillBars.forEach(bar => {
-                    const w = bar.dataset.width;
-                    if (w) bar.style.width = w;
-                });
-                skillObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-    skillObserver.observe(skillsSection);
-}
-
 // Carousel functionality
 const track = document.querySelector('.carousel-track');
 if (track) {
