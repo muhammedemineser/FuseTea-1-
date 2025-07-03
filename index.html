@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="header.css">
 </head>
 <body>
     <div class="background-blobs">
@@ -19,35 +18,20 @@
         <span></span>
         <span></span>
     </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">Rythm</div>
+            <nav class="site-nav" id="navbar">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#work">Work</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-bolt"></i></button>
+        </div>
+    </header>
 
-<div class="j" id="a">
-  <header id="b">
-    <img id="c" src="Mein Icon 1.png" alt="Logo" style="margin-right: 25px;"/>
-    <div style="display: flex; gap: 50px; align-items: center;">
-      <div id="d">
-        <div class="k" style="height: 80px; width: 80px;">
-          <span id="e" alt="Search" style="margin-left: 10px; background-image: url('suchsymbol.png'); background-position: center; background-size: contain; display: inline-block; width: 100%; height: 100%;"></span>
-        </div>
-        <input type="text" id="f" placeholder="Search..." />
-      </div>
-      <div id="g">
-        <div class="k" style="height: 80px; width: 80px;">
-          <img src="nav2.png" id="i" alt="" style="margin-left: 25px; margin-right: 25px; width: 100%; height: 100%; display: inline;">
-        </div>
-        <div id="h">
-          <ul>
-            <li>Home</li>
-            <li>About Me</li>
-            <li>Projects</li>
-            <li>Case Studies</li>
-            <li>Skills</li>
-            <li>Contact</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
-</div>
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Hi, I'm Alex</h1>
@@ -150,6 +134,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="header.js"></script>
 </body>
 </html>
