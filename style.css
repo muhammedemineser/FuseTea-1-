@@ -1,7 +1,7 @@
 /* Portfolio template styles */
 :root {
-    --primary: #ff0066;
-    --dark: #111;
+    --primary: #002366;
+    --dark: #001a33;
     --light: #fff;
 }
 
@@ -140,16 +140,16 @@ body.futuristic .hero-content {
     background: var(--primary);
     color: var(--light);
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 30px;
     transition: background 0.3s;
 }
 
 .btn:hover {
-    background: #e6005c;
+    background: #001a66;
 }
 
 body.futuristic .btn:hover {
-    background: #00cccc;
+    background: #003399;
 }
 
 .section {
@@ -489,7 +489,7 @@ body.futuristic .contact textarea {
 }
 
 .background-blobs span:nth-child(1) {
-    background: #ff0066;
+    background: #002366;
     top: -10%;
     left: -10%;
     animation: blob1 35s ease-in-out infinite;
