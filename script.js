@@ -23,6 +23,18 @@ const filterButtons = document.querySelectorAll('[data-filter]');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 const themeToggle = document.getElementById('themeToggle');
 
+// wrap portfolio item text in spans for letter animation
+portfolioItems.forEach(item => {
+    const text = item.textContent.trim();
+    item.textContent = '';
+    [...text].forEach((ch, idx) => {
+        const span = document.createElement('span');
+        span.textContent = ch;
+        span.style.setProperty('--delay', `${idx * 0.05}s`);
+        item.appendChild(span);
+    });
+});
+
 filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
