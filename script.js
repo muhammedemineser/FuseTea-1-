@@ -1,195 +1,232 @@
-document.querySelector('body').classList.add('futuristic'); // Default futuristic theme
+window.addEventListener("DOMContentLoaded", () => {
+
+  document.querySelector("body").style.display = "block"; 
+    document.querySelector("html").style.display = "block"; 
 
 
-  document.addEventListener("DOMContentLoaded", function () {
-    document.body.style.visibility = "visible";
-    document.body.style.opacity = "1";
-  });
+    // Animation für Bilder
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById("pic" + i).style.opacity = "0";
+        document.getElementById("pic" + i).style.transition = "opacity 0.3s ease";
+        document.getElementById("pic" + i).style.willChange = "opacity";
+        setTimeout(() => {
+            document.getElementById("pic" + i).style.opacity = "1";
+        }, 300);
+    }
 
-// Mobile navigation toggle
-const navToggle = document.getElementById('navToggle');
-const navbar = document.getElementById('navbar');
 
-navToggle.addEventListener('click', () => {
-    navbar.classList.toggle('show');
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth' });
-            navbar.classList.remove('show');
-        }
-    });
-});
-
-// Portfolio filter
-const filterButtons = document.querySelectorAll('[data-filter]');
-const portfolioItems = document.querySelectorAll('.portfolio-item');
-const themeToggle = document.getElementById('themeToggle');
-
-// wrap portfolio item text in word-spans, then letter-spans for animation & line-break friendliness
-portfolioItems.forEach(item => {
-    const text = item.textContent.trim();
-    item.textContent = '';
-
-    const words = text.split(' ');
-    words.forEach((word, wordIndex) => {
-        const wordSpan = document.createElement('span');
-
-        [...word].forEach((ch, chIndex) => {
-            const letterSpan = document.createElement('span');
-            letterSpan.textContent = ch;
-            letterSpan.style.setProperty('--delay', `${(wordIndex + chIndex) * 0.005}s`);
-            wordSpan.appendChild(letterSpan);
-        });
-
-        item.appendChild(wordSpan);
-        item.appendChild(document.createTextNode(' ')); // Echt sichtbares Leerzeichen für Layout & Umbruch
-    });
-});
-
-filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter;
-        filterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        portfolioItems.forEach(item => {
-            if (filter === 'all' || item.classList.contains(filter)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
-});
-
-// Toggle futuristic theme
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('futuristic');
-});
-
-// Interactive portfolio items
-portfolioItems.forEach(item => {
-    item.addEventListener('click', () => {
-        item.classList.toggle('active');
-        setTimeout(() => item.classList.remove('active'), 4000);
-    });
-});
-
-// Reveal sections on scroll
+    // Intersection Observer
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
+            entry.target.style.transition = "opacity 0.6s ease";
+            entry.target.style.opacity = "1";
+            observer.unobserve(entry.target); 
+        } else {
+            entry.target.style.opacity = "0";
         }
     });
-}, { threshold: 0.1 });
+}, { threshold: 0.3 });
 
-document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
-
-// Carousel functionality
-const track = document.querySelector('.carousel-track');
-if (track) {
-    const slides = Array.from(track.children);
-    const nextBtn = document.querySelector('.carousel-btn.next');
-    const prevBtn = document.querySelector('.carousel-btn.prev');
-    let currentSlide = 0;
-
-    function updateCarousel() {
-        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    nextBtn.addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        updateCarousel();
-    });
-
-    prevBtn.addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        updateCarousel();
-    });
-
-    slides.forEach(card => {
-        card.addEventListener('mouseenter', () => card.classList.add('hover'));
-        card.addEventListener('mouseleave', () => card.classList.remove('hover'));
-    });
-}
-
-// Dropdown
-const dropToggle = document.querySelector('.drop-toggle');
-const dropContent = document.querySelector('.drop-content');
-if (dropToggle && dropContent) {
-    dropToggle.addEventListener('click', () => {
-        dropContent.classList.toggle('show');
-    });
-}
-
-// Slide bar / sidebar
-const slideToggle = document.querySelector('.slide-toggle');
-const sidePanel = document.querySelector('.side-panel');
-if (slideToggle && sidePanel) {
-    slideToggle.addEventListener('click', () => {
-        sidePanel.classList.toggle('show');
-    });
-}
-
-// Skills ticker
-document.addEventListener('DOMContentLoaded', () => {
-    const ticker = document.querySelector('.skill-carousel span');
-    const container = document.querySelector('.skill-carousel');
-    if (ticker && container) {
-        const skills = [
-        'UX Design',
-        'UI Design',
-        'Visual Design',
-        'Grafikdesign',
-        'UX Writing',
-        'Erstellung von Informationsarchitektur',
-        'Responsive Design',
-        'Logoentwicklung und -optimierung',
-        'Projektplanung und -analyse',
-        'Projektmanagement',
-        'Designsprint-Organisation',
-        'Analyse bestehender Websites',
-        'Benchmarking und Wettbewerbsanalyse',
-        'Erkennung von Usability-Problemen',
-        'Zeitkritisches Re-Design',
-        'Umsetzung von Mobile-First-Strategien',
-        'Optimierung von Call-to-Actions',
-        'Verbesserung visueller Hierarchien',
-        'Sicherstellung von Markenkohärenz im Design',
-        'Dokumentation von Designentscheidungen',
-        'Gestaltung effektiver Preis- und Produktdarstellungen',
-        'Entfernung ausschließender Designelemente',
-        'Kommunikation mit Entwicklern und Stakeholdern',
-        'Strategien zur Abstimmung von Unternehmenszielen und UX-Erkenntnissen',
-        'Technische Abstimmung im Designprozess',
-        'Einbringen und Bewertung neuer Feature-Ideen',
-        'Entwicklung kreativer Marketingkonzepte',
-        'Optimierung von Farbkonzepten',
-        'Integration von Kundenbewertungen im Web'
-        ];
-        ticker.textContent = skills.join(' • ');
-        let pos = container.offsetWidth;
-        const speed = 1;
-        setInterval(() => {
-            pos -= speed;
-            if (pos <= -ticker.offsetWidth) {
-                pos = container.offsetWidth;
-            }
-            ticker.style.transform = `translateX(${pos}px)`;
-        }, 20);
-    }
+// Observe all .cartoonBilder elements
+document.querySelectorAll(".cartoonBilder").forEach(box => {
+    observer.observe(box);
 });
 
-function delayNavigation(event, el) {
-  event.preventDefault(); // verhindert sofortiges Springen
-  el.classList.add('clicked'); // z. B. für Animation
+// Animation für Buchstaben
+document.querySelectorAll(".cartoonText").forEach(e => {
+    const text = e.innerHTML;
+    e.textContent = "";
+
+    // Split text and wrap each part in a span
+    text.split(/(<br\s*\/?>|\s)/).forEach((t, i) => {
+        const span = document.createElement("span");
+        if (t === "\n" || t === "\r" || t === "\r\n" || t === "<br>") {
+            span.innerHTML = "<br>";
+        } else if (t === " ") {
+            span.innerHTML = "&nbsp;";
+        } else {
+            span.textContent = t;
+        }
+        span.style.opacity = "0";
+        span.style.transition = "opacity 0.3s ease";
+        e.appendChild(span);
+    });
+
+    // Observe the text element
+    observer.observe(e);
+});
+
+// Add a new IntersectionObserver for .cartoonText to animate letters
+const textObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const spans = entry.target.querySelectorAll("span");
+            spans.forEach((span, i) => {
+                setTimeout(() => {
+                    span.style.opacity = "1";
+                    span.classList.add("animation");
+                }, i * 10);
+            });
+            textObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+
+document.querySelectorAll(".cartoonText").forEach(e => {
+    textObserver.observe(e);
+});
+
+const maps = document.querySelectorAll('.empathy-map');
+let current = 0;
+let clickLocked = false; // Sperrvariable
+
+function switchMap(next) {
+  if (clickLocked) return; // Falls blockiert: abbrechen
+  clickLocked = true;
+
+  const currentMap = maps[current];
+  const nextMap = maps[next];
+
+  currentMap.classList.remove('active');
+  currentMap.classList.add('exit-left');
+
+  nextMap.style.display = 'block';
+  nextMap.classList.remove('active', 'exit-left', 'enter-right');
+  nextMap.classList.add('enter-right');
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      nextMap.classList.remove('enter-right');
+      nextMap.classList.add('active');
+      current = next;
+    });
+  });
+
   setTimeout(() => {
-    window.location.href = el.href;
-  }, 1000); // 1000 ms = 1 Sekunde Verzögerung
+    currentMap.style.display = 'none';
+    currentMap.classList.remove('exit-left');
+    clickLocked = false; // Sperre wieder freigeben
+  }, 1000); // Dauer der Sperre (1 Sekunde)
 }
+
+// Klick auf Karte: weiter zur nächsten
+document.querySelector('.empathy-card').addEventListener('click', () => {
+  const next = (current + 1) % maps.length;
+  switchMap(next);
+});
+
+// Navigation via Buttons
+document.getElementById('prevEmpathy').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const prev = (current - 1 + maps.length) % maps.length;
+  switchMap(prev);
+});
+
+document.getElementById('nextEmpathy').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const next = (current + 1) % maps.length;
+  switchMap(next);
+});
+const visionMaps = document.querySelectorAll('.vision-map');
+let currentVision = 0;
+let visionClickLocked = false;
+
+function switchVisionMap(next) {
+  if (visionClickLocked) return;
+  visionClickLocked = true;
+
+  const currentMap = visionMaps[currentVision];
+  const nextMap = visionMaps[next];
+
+  currentMap.classList.remove('active');
+  currentMap.classList.add('exit-left');
+
+  nextMap.style.display = 'block';
+  nextMap.classList.remove('active', 'exit-left', 'enter-right');
+  nextMap.classList.add('enter-right');
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      nextMap.classList.remove('enter-right');
+      nextMap.classList.add('active');
+      currentVision = next;
+    });
+  });
+
+  setTimeout(() => {
+    currentMap.style.display = 'none';
+    currentMap.classList.remove('exit-left');
+    visionClickLocked = false;
+  }, 1000);
+}
+
+// Klick auf Karte
+document.querySelector('.vision-card').addEventListener('click', () => {
+  const next = (currentVision + 1) % visionMaps.length;
+  switchVisionMap(next);
+});
+
+// Navigation Buttons
+document.getElementById('prevVision').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const prev = (currentVision - 1 + visionMaps.length) % visionMaps.length;
+  switchVisionMap(prev);
+});
+
+document.getElementById('nextVision').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const next = (currentVision + 1) % visionMaps.length;
+  switchVisionMap(next);
+});
+
+
+window.addEventListener('load', () => {
+  $(".twentytwenty-container").twentytwenty();
+
+  const beforeImg = document.getElementById('beforeImg');
+  const afterImg = document.getElementById('afterImg');
+
+  const setHeight = () => {
+    if (beforeImg && afterImg) {
+      const height = afterImg.clientHeight;
+      if (height > 0) {
+        beforeImg.style.height = height + 'px';
+        beforeImg.style.width = 'auto';
+      }
+    }
+  };
+
+  if (afterImg) {
+    if (afterImg.complete) {
+      setHeight();
+    } else {
+      afterImg.onload = setHeight;
+    }
+  }
+});
+
+
+  const scrollWrapper = document.querySelector('.scroll-wrapper');
+  const root = document.documentElement;
+
+  if (scrollWrapper) {
+    const updatePositions = () => {
+      const scrollY = scrollWrapper.scrollTop;
+      const scrollHeight = scrollWrapper.scrollHeight - scrollWrapper.clientHeight;
+      const basePercent = 3;
+      const maxPercent = 90;
+      const progress = scrollHeight > 0 ? scrollY / scrollHeight : 0;
+      const newPercent = basePercent + progress * 1.1 *(maxPercent - basePercent);
+
+      root.style.setProperty('--handle-top', newPercent + '%');
+      root.style.setProperty('--label-top', newPercent + '%');
+    };
+
+    updatePositions();
+    scrollWrapper.addEventListener('scroll', updatePositions);
+  }
+//onload
+});
+
+
