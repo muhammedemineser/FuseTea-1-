@@ -127,3 +127,39 @@ if (slideToggle && sidePanel) {
         sidePanel.classList.toggle('show');
     });
 }
+
+// Skills ticker
+document.addEventListener('DOMContentLoaded', () => {
+    const ticker = document.querySelector('.skill-carousel span');
+    const container = document.querySelector('.skill-carousel');
+    if (ticker && container) {
+        const skills = [
+            'UX Design', 'UI Design', 'Visual Design', 'Grafik Design',
+            'UX Writing', 'Informationsarchitektur', 'Responsive Design', 'Logo Design',
+            'Analyse & Planung', 'Projektmanager', 'Projektanalyse & Evaluation',
+            'Designsprint Organisator', 'Bestandsaufnahme der bestehenden Website',
+            'Benchmarking & Konkurrenzanalyse', 'Identifikation von Usability-Problemen',
+            'Re-Design unter Zeitdruck', 'Mobile-First-Strategie umgesetzt',
+            'Design & Umsetzung', 'Textoptimierung für Call-to-Actions',
+            'Visuelle Hierarchie verbessert', 'Markenkohärenz im Design umgesetzt',
+            'Designentscheidungen dokumentiert', 'Empfehlungen zur Preis- & Produktdarstellung',
+            'Entfernung exkludierender Designelemente', 'Kommunikation & Strategie',
+            'Kommunikation mit dem Entwickler und dem Klienten',
+            'Problemlösestrategien zur Vereinheitlichung der Unternehmenserwartungen und UX-Rechercheergebnisse',
+            'Abstimmung von Design und technischen Möglichkeiten',
+            'Feature-Vorschläge eingebracht (z. B. Benachrichtigungsfunktion)',
+            'Marketingideen eingebracht (z. B. Neukundenrabatt, Probierpaket)',
+            'Logo & Farbkonzept optimiert', 'Empfehlung von Kundenbewertungen im Web'
+        ];
+        ticker.textContent = skills.join(' • ');
+        let pos = container.offsetWidth;
+        const speed = 1;
+        setInterval(() => {
+            pos -= speed;
+            if (pos <= -ticker.offsetWidth) {
+                pos = container.offsetWidth;
+            }
+            ticker.style.transform = `translateX(${pos}px)`;
+        }, 20);
+    }
+});
