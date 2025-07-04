@@ -1,3 +1,11 @@
+document.querySelector('body').classList.add('futuristic'); // Default futuristic theme
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.body.style.visibility = "visible";
+    document.body.style.opacity = "1";
+  });
+
 // Mobile navigation toggle
 const navToggle = document.getElementById('navToggle');
 const navbar = document.getElementById('navbar');
@@ -30,7 +38,7 @@ portfolioItems.forEach(item => {
     [...text].forEach((ch, idx) => {
         const span = document.createElement('span');
         span.textContent = ch;
-        span.style.setProperty('--delay', `${idx * 0.05}s`);
+        span.style.setProperty('--delay', `${idx * 0.005}s`);
         item.appendChild(span);
     });
 });
