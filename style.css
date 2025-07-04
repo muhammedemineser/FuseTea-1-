@@ -194,6 +194,23 @@ body.futuristic .btn:hover {
     height: 100%;
 }
 
+.skill-carousel {
+    position: relative;
+    overflow: hidden;
+    height: 2rem;
+    margin-top: 1rem;
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.skill-carousel span {
+    position: absolute;
+    white-space: nowrap;
+    left: 0;
+    top: 0;
+    will-change: transform;
+}
+
 .filter {
     text-align: center;
     margin-bottom: 2rem;
