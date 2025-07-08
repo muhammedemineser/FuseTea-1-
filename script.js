@@ -1,3 +1,11 @@
+document.querySelector('body').classList.add('futuristic'); // Default futuristic theme
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.body.style.visibility = "visible";
+    document.body.style.opacity = "1";
+  });
+
 // Mobile navigation toggle
 const navToggle = document.getElementById('navToggle');
 const navbar = document.getElementById('navbar');
@@ -7,31 +15,50 @@ navToggle.addEventListener('click', () => {
 });
 
 // Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth' });
-            navbar.classList.remove('show');
-        }
+document.addEventListener("DOMContentLoaded", function () {
+    // Sichtbarkeit aktivieren
+    document.body.style.visibility = "visible";
+
+    // Smooth Scroll für Anker-Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+
+                // Navigation einklappen (nur wenn navbar existiert)
+                const navbar = document.getElementById("navbar");
+                if (navbar) navbar.classList.remove('show');
+            }
+        });
     });
 });
+
 
 // Portfolio filter
 const filterButtons = document.querySelectorAll('[data-filter]');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 const themeToggle = document.getElementById('themeToggle');
 
-// wrap portfolio item text in spans for letter animation
+// wrap portfolio item text in word-spans, then letter-spans for animation & line-break friendliness
 portfolioItems.forEach(item => {
     const text = item.textContent.trim();
     item.textContent = '';
-    [...text].forEach((ch, idx) => {
-        const span = document.createElement('span');
-        span.textContent = ch;
-        span.style.setProperty('--delay', `${idx * 0.05}s`);
-        item.appendChild(span);
+
+    const words = text.split(' ');
+    words.forEach((word, wordIndex) => {
+        const wordSpan = document.createElement('span');
+
+        [...word].forEach((ch, chIndex) => {
+            const letterSpan = document.createElement('span');
+            letterSpan.textContent = ch;
+            letterSpan.style.setProperty('--delay', `${(wordIndex + chIndex) * 0.005}s`);
+            wordSpan.appendChild(letterSpan);
+        });
+
+        item.appendChild(wordSpan);
+        item.appendChild(document.createTextNode(' ')); // Echt sichtbares Leerzeichen für Layout & Umbruch
     });
 });
 
@@ -119,3 +146,108 @@ if (slideToggle && sidePanel) {
         sidePanel.classList.toggle('show');
     });
 }
+
+// Skills ticker
+document.addEventListener('DOMContentLoaded', () => {
+    const ticker = document.querySelector('.skill-carousel span');
+    const container = document.querySelector('.skill-carousel');
+    if (ticker && container) {
+        const skills = [
+        'UX Design',
+        'UI Design',
+        'Visual Design',
+        'Grafikdesign',
+        'UX Writing',
+        'Erstellung von Informationsarchitektur',
+        'Responsive Design',
+        'Logoentwicklung und -optimierung',
+        'Projektplanung und -analyse',
+        'Projektmanagement',
+        'Designsprint-Organisation',
+        'Analyse bestehender Websites',
+        'Benchmarking und Wettbewerbsanalyse',
+        'Erkennung von Usability-Problemen',
+        'Zeitkritisches Re-Design',
+        'Umsetzung von Mobile-First-Strategien',
+        'Optimierung von Call-to-Actions',
+        'Verbesserung visueller Hierarchien',
+        'Sicherstellung von Markenkohärenz im Design',
+        'Dokumentation von Designentscheidungen',
+        'Gestaltung effektiver Preis- und Produktdarstellungen',
+        'Entfernung ausschließender Designelemente',
+        'Kommunikation mit Entwicklern und Stakeholdern',
+        'Strategien zur Abstimmung von Unternehmenszielen und UX-Erkenntnissen',
+        'Technische Abstimmung im Designprozess',
+        'Einbringen und Bewertung neuer Feature-Ideen',
+        'Entwicklung kreativer Marketingkonzepte',
+        'Optimierung von Farbkonzepten',
+        'Integration von Kundenbewertungen im Web'
+        ];
+        ticker.textContent = skills.join(' • ');
+        let pos = container.offsetWidth;
+        const speed = 1;
+        setInterval(() => {
+            pos -= speed;
+            if (pos <= -ticker.offsetWidth) {
+                pos = container.offsetWidth;
+            }
+            ticker.style.transform = `translateX(${pos}px)`;
+        }, 20);
+    }
+});
+
+function delayNavigation(event, el) {
+  event.preventDefault(); // verhindert sofortiges Springen
+  el.classList.add('clicked'); // z. B. für Animation
+  setTimeout(() => {
+    window.location.href = el.href;
+  }, 1000); // 1000 ms = 1 Sekunde Verzögerung
+}
+
+//twentytwenty
+
+window.addEventListener('load', () => {
+  $(".twentytwenty-container").twentytwenty();
+
+  const beforeImg = document.getElementById('beforeImg');
+  const afterImg = document.getElementById('afterImg');
+
+  const setHeight = () => {
+    if (beforeImg && afterImg) {
+      const height = afterImg.clientHeight;
+      if (height > 0) {
+        beforeImg.style.height = height + 'px';
+        beforeImg.style.width = 'auto';
+      }
+    }
+  };
+
+  if (afterImg) {
+    if (afterImg.complete) {
+      setHeight();
+    } else {
+      afterImg.onload = setHeight;
+    }
+  }
+});
+
+
+  const scrollWrapper = document.querySelector('.scroll-wrapper');
+  const root = document.documentElement;
+
+  if (scrollWrapper) {
+    const updatePositions = () => {
+      const scrollY = scrollWrapper.scrollTop;
+      const scrollHeight = scrollWrapper.scrollHeight - scrollWrapper.clientHeight;
+      const basePercent = 3;
+      const maxPercent = 90;
+      const progress = scrollHeight > 0 ? scrollY / scrollHeight : 0;
+      const newPercent = basePercent + progress * 1.1 *(maxPercent - basePercent);
+
+      root.style.setProperty('--handle-top', newPercent + '%');
+      root.style.setProperty('--label-top', newPercent + '%');
+    };
+
+    updatePositions();
+    scrollWrapper.addEventListener('scroll', updatePositions);
+  }
