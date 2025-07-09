@@ -104,7 +104,7 @@ body.futuristic .site-header {
     justify-content: center;
     text-align: center;
     color: var(--light);
-        z-index: -9 !important;
+        z-index: 0 !important;
 
 }
 
@@ -113,13 +113,13 @@ body.futuristic .site-header {
     position: absolute;
     inset: 0;
     background: rgba(0,0,0,0.5);
-        z-index: -9 !important;
+        z-index: 0 !important;
 
 }
 
 body.futuristic .hero::after {
     background: rgba(0, 255, 255, 0.2);
-    z-index: -9 !important;
+    z-index: 0 !important;
 }
 
 .hero-content {
@@ -395,6 +395,7 @@ body.futuristic .contact textarea {
     position: relative;
     overflow: hidden;
     margin-bottom: 2rem;
+        margin-top:1rem;
 }
 
 .carousel-track {
@@ -468,6 +469,7 @@ body.futuristic .contact textarea {
     opacity: 0;
     overflow: hidden;
     transition: max-height 0.5s ease, opacity 0.5s ease;
+    margin: 2%;
 }
 
 .drop-content.show {

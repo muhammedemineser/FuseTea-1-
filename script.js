@@ -1,6 +1,3 @@
-document.querySelector('body').classList.add('futuristic'); // Default futuristic theme
-
-
   document.addEventListener("DOMContentLoaded", function () {
     document.body.style.visibility = "visible";
     document.body.style.opacity = "1";
@@ -102,12 +99,13 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
 
 // Carousel functionality
+    let currentSlide = 0;
+
 const track = document.querySelector('.carousel-track');
 if (track) {
     const slides = Array.from(track.children);
     const nextBtn = document.querySelector('.carousel-btn.next');
     const prevBtn = document.querySelector('.carousel-btn.prev');
-    let currentSlide = 0;
 
     function updateCarousel() {
         track.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -127,7 +125,34 @@ if (track) {
         card.addEventListener('mouseenter', () => card.classList.add('hover'));
         card.addEventListener('mouseleave', () => card.classList.remove('hover'));
     });
+
+    if (currentSlide === 0) {
+    document.querySelector(".drop-content").innerHTML = `<p>Color Reaction – Wenn UX auf Wissenschaft trifft
+Aus der Kombination von Sporttheorie, kognitiver Psychologie und meiner Leidenschaft für Frontend-Entwicklung entstand dieses interaktive Farbreaktionsspiel. Ziel: Reaktionszeit, Konzentration und Mustererkennung auf spielerische Weise messbar machen.
+Das Game analysiert Nutzerdaten wie Alter, Geschlecht und Performance, gibt direktes Feedback, bietet Rankings und fördert Metakognition. Features wie Mehrsprachigkeit, mobile Optimierung, intuitive UX und wissenschaftlicher Hintergrund machen es zu mehr als nur einem Spiel – es ist ein smartes Forschungstool im Spielformat.
+Live getestet im Schulunterricht, begeistert angenommen von Lehrkräften und Mitschülern – ein Herzensprojekt mit echtem Mehrwert.</p>`;
+    }
+
+    const prevNextBtn = [nextBtn, prevBtn];
+    prevNextBtn.forEach(btn => {
+        btn.addEventListener('click', () => {
+    if (currentSlide === 1) {
+    document.querySelector(".drop-content").innerHTML = `<p>Softdrink-Website – UX-Redesign & Design Sprint
+    In nur einer Woche entstand im Rahmen eines intensiven Design Sprints ein vollständiges UX-Redesign für die Website eines Startups. Ausgangspunkt war ein funktionales Dev-Konzept ohne Nutzerfokus. Durch Research, Informationsarchitektur, Wireframes und Testing entstand eine intuitive, mobile-first optimierte Seite. Das Projekt basierte auf echter Zusammenarbeit mit dem Entwickler sowie direktem Feedback aus dem Umfeld und vom Kunden. Ergebnis: ein emotionales Markenerlebnis mit klarer Struktur, das Nutzer:innen abholt – und ein zufriedener Kunde, der mich künftig wieder beauftragen will.</p>`;
+    } else if (currentSlide === 0) {
+    document.querySelector(".drop-content").innerHTML = `<p>Color Reaction – Wenn UX auf Wissenschaft trifft
+Aus der Kombination von Sporttheorie, kognitiver Psychologie und meiner Leidenschaft für Frontend-Entwicklung entstand dieses interaktive Farbreaktionsspiel. Ziel: Reaktionszeit, Konzentration und Mustererkennung auf spielerische Weise messbar machen.
+Das Game analysiert Nutzerdaten wie Alter, Geschlecht und Performance, gibt direktes Feedback, bietet Rankings und fördert Metakognition. Features wie Mehrsprachigkeit, mobile Optimierung, intuitive UX und wissenschaftlicher Hintergrund machen es zu mehr als nur einem Spiel – es ist ein smartes Forschungstool im Spielformat.
+Live getestet im Schulunterricht, begeistert angenommen von Lehrkräften und Mitschülern – ein Herzensprojekt mit echtem Mehrwert.</p>`;
+    } else if (currentSlide === 2) {
+        document.querySelector(".drop-content").innerHTML = `<p></p>`;
+    }
+
+    console.log(currentSlide);
+});
+})
 }
+
 
 // Dropdown
 const dropToggle = document.querySelector('.drop-toggle');
