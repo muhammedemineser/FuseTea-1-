@@ -4,12 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Color Reaction Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="colorReaction.css">
   <script src="colorReaction.js" defer></script>
+  <script src="../../script.js" defer></script>
 </head>
 <body>
-  <div id="header-placeholder"></div>
-  <main>
+  <div class="background-blobs">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">Mee Studios</div>
+      <nav class="site-nav" id="navbar">
+        <a href="../../index.html#home">Startseite</a>
+        <a href="../../index.html#about">Über mich</a>
+        <a href="../../index.html#work">Arbeit</a>
+        <a href="../../index.html#contact">Kontakt</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-bolt"></i></button>
+    </div>
+  </header>
+  <main class="container portfolio-item">
     <h1>Farbreaktionsspiel – Ein Game mit Backstory</h1>
     <section style="margin-top: 5%;">
       <div style="width: 80vw; height: 80vh; display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative;">

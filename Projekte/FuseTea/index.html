@@ -4,9 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Mee Portfolio</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="../../style.css">
         <link rel="stylesheet" href="fuseTea.css">
-    <script src="fuseTea.js">
-    </script>
+    <script src="fuseTea.js"></script>
+    <script src="../../script.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -18,27 +23,26 @@
 
     </head>
     <body>
-        <div id="header-placeholder"></div>
-          <script>
-    fetch("header.html")
-      .then(res => res.text())
-      .then(data => {
-        const placeholder = document.getElementById("header-placeholder");
-        placeholder.innerHTML = data;
-        placeholder.querySelectorAll("script").forEach(oldScript => {
-          const newScript = document.createElement("script");
-          if (oldScript.src) {
-            newScript.src = oldScript.src;
-          } else {
-            newScript.textContent = oldScript.textContent;
-          }
-          document.body.appendChild(newScript);
-          oldScript.remove();
-        });
-      });
-  </script>
-    <div id="headerContainer"></div>
-        <main>
+        <div class="background-blobs">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <header class="site-header">
+            <div class="container">
+                <div class="logo">Mee Studios</div>
+                <nav class="site-nav" id="navbar">
+                    <a href="../../index.html#home">Startseite</a>
+                    <a href="../../index.html#about">Über mich</a>
+                    <a href="../../index.html#work">Arbeit</a>
+                    <a href="../../index.html#contact">Kontakt</a>
+                </nav>
+                <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-bolt"></i></button>
+            </div>
+        </header>
+        <main class="container portfolio-item">
             <div id="ueberschrift" style="padding: 2rem;">UX,UI Design in einem Softdrinks Onlineshop</div>
             <!-- Cartoon -->
             <h1>Projektziel:</h1>
